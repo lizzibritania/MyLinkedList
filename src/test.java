@@ -35,16 +35,18 @@ public class test {
         System.out.println(myLinkedList.toString());
         System.out.println(myLinkedList.showHead().toString());
         System.out.println(myLinkedList.showHead());
+        System.out.println("gi");
+        System.out.println(myLinkedList.get(0));
+        System.out.println(myLinkedList.toString());
+        System.out.println(myLinkedList.get(5));
+        System.out.println(myLinkedList.indexOf(new MyPoint(1,2)));
+        myLinkedList.set(1,new MyPoint(1,999));
+        System.out.println(myLinkedList.toString());
+        myLinkedList.remove(1);
+        System.out.println(myLinkedList.toString());
 
-
-        System.out.println("Estimated time for add(Object element) method of myLinkedList");
-        long startTime = System.nanoTime();
-        for (int i = 0; i < 100000; i++) {
-            myLinkedList.add(myPoint1);
-        }
-        long estimatedTime = System.nanoTime() - startTime;
-        System.out.println(estimatedTime);
         LinkedList linkedList = new LinkedList();
+
         System.out.println("Estimated time for add(Object element) method of java.itil.LinkedList");
 
         long startTime1 = System.nanoTime();
@@ -53,5 +55,48 @@ public class test {
         }
         long estimatedTime1 = System.nanoTime() - startTime1;
         System.out.println(estimatedTime1);
-    }
+
+        System.out.println("Estimated time for add(Object element) method of myLinkedList");
+        long startTime = System.nanoTime();
+        for (int i = 0; i < 100000; i++) {
+            myLinkedList.add(myPoint1);
+        }
+        long estimatedTime = System.nanoTime() - startTime;
+        System.out.println(estimatedTime);
+
+       System.out.println("Estimated time for set method of java.itil.LinkedList");
+
+    long startTime3 = System.nanoTime();
+
+        linkedList.set(5000,myPoint1);
+
+    long estimatedTime3 = System.nanoTime() - startTime3;
+        System.out.println(estimatedTime3);
+
+        System.out.println("Estimated time for set method of myLinkedList");
+    long startTime4 = System.nanoTime();
+
+        myLinkedList.set(5000,myPoint1);
+
+    long estimatedTime4 = System.nanoTime() - startTime4;
+        System.out.println(estimatedTime4);
+
+
+        System.out.println("Estimated time for remove method of java.itil.LinkedList");
+
+        long startTime6= System.nanoTime();
+
+            linkedList.set(5000,myPoint1);
+
+        long estimatedTime6 = System.nanoTime() - startTime6;
+        System.out.println(estimatedTime6);
+
+        System.out.println("Estimated time for remove method of myLinkedList");
+        long startTime7 = System.nanoTime();
+
+            myLinkedList.set(5000,myPoint1);
+
+        long estimatedTime7 = System.nanoTime() - startTime7;
+        System.out.println(estimatedTime7);
+}
 }

@@ -24,6 +24,8 @@ public class Node<E> {
         this.prevNode = null;
     }
 
+
+
     public String toString() {
         return "Node{element=" + this.element;
     }

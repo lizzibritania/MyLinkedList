@@ -23,12 +23,12 @@ public class MyLinkedList<E> implements ILinkedList {
     }
 
     public void add(Object element) {
-        if(this.cnode != null) {
+        if (this.cnode != null) {
             Node newNode = new Node(element, this.cnode.getNextNode());
             this.cnode.setNextNode(newNode);
             this.cnode = newNode;
         } else {
-            this.head = this.tail = new Node(element, (Node)null);
+            this.head = this.tail = new Node(element, (Node) null);
             this.cnode = this.head;
         }
 
@@ -37,10 +37,10 @@ public class MyLinkedList<E> implements ILinkedList {
 
     public String toString() {
         String str = "";
-        if(this.head != null) {
+        if (this.head != null) {
             str = str + this.head.getElement();
 
-            for(Node current = this.head.getNextNode(); current != null; current = current.getNextNode()) {
+            for (Node current = this.head.getNextNode(); current != null; current = current.getNextNode()) {
                 str = str + ", " + current.getElement();
             }
         }
@@ -50,16 +50,16 @@ public class MyLinkedList<E> implements ILinkedList {
 
     public void add(Object element, int index) {
         Node cur;
-        if(index == 0) {
-            cur = new Node(element, this.head, (Node)null);
+        if (index == 0) {
+            cur = new Node(element, this.head, (Node) null);
             this.head = cur;
             ++this.size;
-        } else if(index > this.size) {
+        } else if (index > this.size) {
             this.add(element);
         } else {
             cur = this.head;
 
-            for(int newnode = 0; newnode < index - 1; ++newnode) {
+            for (int newnode = 0; newnode < index - 1; ++newnode) {
                 cur = cur.getNextNode();
             }
 
@@ -78,13 +78,13 @@ public class MyLinkedList<E> implements ILinkedList {
 
     public Object get(int index) {
         Node result = this.head;
-        if(index >= this.size) {
+        if (index >= this.size) {
             System.out.println("No such element");
             return null;
         } else {
-            for(int i = 0; i < index; ++i) {
-                result.setElement(result.getNextNode().getElement());
-                result.setNextNode(result.getNextNode());
+            for (int i = 0; i < index; ++i) {
+
+                result = result.getNextNode();
             }
 
             return result.getElement();
@@ -92,25 +92,81 @@ public class MyLinkedList<E> implements ILinkedList {
     }
 
     public int indexOf(Object element) {
-        return 0;
+        int index = 0;
+        Node result = head;
+        while (result != null) {
+            if (result.getElement().equals(element)) {
+                {
+                    return index;
+                }
+            }
+            index++;
+            result = result.getNextNode();
+        }
+        return -1;
     }
+
 
     public Object remove(int index) {
-        return null;
-    }
-
-    public E set(int index, Object element) {
-        if(index == 0) {
-            this.head.setElement((E) element);
-        } else {
-            Node cur = this.head;
-
-            for(int i = 0; i < index - 1; ++i) {
-                cur = cur.getNextNode();
-            }
+        Node deleted = head;
+        Node current = head;
+        if (size == 1) {
+            head = null;
+            tail = null;
+            size--;
+            return true;
+        }
+        if (index == 0) {
+            head.setElement(head.getNextNode().getElement());
+            head = head.getNextNode();
+            size--;
+            return true;
+        }
+        if (head == null) {
+            return false;
         }
 
+
+        if (index > size) {
+            System.out.println("out of bounds");
+            return false;
+        } else {
+            for (int i = 0; i < index - 1; i++) {
+                current = current.getNextNode();
+            }
+            for (int i = 0; i < index + 1; i++) {
+                deleted = deleted.getNextNode();
+            }
+
+            deleted.setPrevNode(current);
+            current.setNextNode(deleted);
+
+            size--;
+        }
+        return true;
+    }
+
+
+    public E set(int index, Object element) {
+        Node cur;
+        if (index == 0) {
+            head.setElement((E) element);
+
+        } else if (index > this.size) {
+            System.out.println("out of bounds");
+        } else {
+            cur = this.head;
+
+            for (int newnode = 0; newnode < index; ++newnode) {
+                cur = cur.getNextNode();
+            }
+
+
+            Node var5 = new Node(element, cur.getNextNode(), cur.getPrevNode());
+            cur.setElement(var5.getElement());
+        }
         return null;
+
     }
 
     public int size() {
@@ -121,7 +177,7 @@ public class MyLinkedList<E> implements ILinkedList {
         Node curr = this.head;
         Object[] objects = new Object[this.size];
 
-        for(int i = 0; i < this.size - 1; ++i) {
+        for (int i = 0; i < this.size - 1; ++i) {
             objects[i] = curr.getElement();
             curr.setElement(curr.getNextNode().getElement());
             curr.setNextNode(curr.getNextNode().getNextNode());
@@ -147,10 +203,10 @@ public class MyLinkedList<E> implements ILinkedList {
 
             public E next() {
                 Object result = null;
-                if(this.hasNext()) {
-                    result = this.current.getNextNode().getElement();
-                    this.current.setElement(this.current.getNextNode().getElement());
-                    this.current.setNextNode(this.current.getNextNode().getNextNode());
+                if (this.hasNext()) {
+                 result=current.getNextNode().getElement();
+                    current=current.getNextNode();
+
                 }
 
                 return (E) result;
