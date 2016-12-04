@@ -174,46 +174,57 @@ public class MyLinkedList<E> implements ILinkedList {
     }
 
     public Object[] toArray() {
-        Node curr = this.head;
-        Object[] objects = new Object[this.size];
 
-        for (int i = 0; i < this.size - 1; ++i) {
-            objects[i] = curr.getElement();
-            curr.setElement(curr.getNextNode().getElement());
-            curr.setNextNode(curr.getNextNode().getNextNode());
+        Node<E> lastr = head;
+        Node<E> nextnode;
+
+        Object[] objects = new Object[this.size];
+objects[0]=lastr.getElement();
+        for (int i = 1; i < this.size; ++i) {
+            nextnode = lastr.getNextNode();
+
+            lastr = nextnode;
+
+            objects[i] = lastr.getElement();
+
         }
 
-        objects[this.size - 1] = curr.getElement();
+
         return objects;
     }
 
-    public Iterator<E> iterator() {
-        return new Iterator() {
-            private Node<E> current;
-            int number;
+    public Iterator iterator() {
+        return new MyLinkedListIterator();}
 
-            {
-                this.current = MyLinkedList.this.myLinkedListIter.head;
-                this.number = 1;
-            }
+        private class MyLinkedListIterator implements Iterator<E>
+        {
+            private Node<E> lastReturned = head;
+      private Node<E> next;
+       private int nextIndex;
+            private String no="no such element";
 
-            public boolean hasNext() {
-                return this.current.getNextNode() != null;
-            }
 
-            public E next() {
-                Object result = null;
-                if (this.hasNext()) {
-                 result=current.getNextNode().getElement();
-                    current=current.getNextNode();
+            public boolean  hasNext() {
+                        return lastReturned.getNextNode()!= null;
+                    }
 
-                }
+              public E next() {
 
-                return (E) result;
-            }
+                  if (nextIndex == size - 1)
+                      return (E) no;
+                  else {
+
+                      next = lastReturned.getNextNode();
+                      nextIndex++;
+                      lastReturned = next;
+                      return lastReturned.getElement();
+                  }
+              }
 
             public void remove() {
             }
         };
     }
-}
+
+
+
