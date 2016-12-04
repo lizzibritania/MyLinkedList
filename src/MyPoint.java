@@ -51,13 +51,13 @@ public class MyPoint {
     }
 
     public boolean equals(Object o) {
-        if(this == o) {
+        if (this == o) {
             return true;
-        } else if(!(o instanceof MyPoint)) {
+        } else if (!(o instanceof MyPoint)) {
             return false;
         } else {
-            MyPoint myPoint = (MyPoint)o;
-            return this.x != myPoint.x?false:this.y == myPoint.y;
+            MyPoint myPoint = (MyPoint) o;
+            return this.x != myPoint.x ? false : this.y == myPoint.y;
         }
     }
 
@@ -68,14 +68,14 @@ public class MyPoint {
     }
 
     public double distance() {
-        return Math.sqrt(Math.pow((double)this.x, 2.0D) + Math.pow((double)this.y, 2.0D));
+        return Math.sqrt(Math.pow((double) this.x, 2.0D) + Math.pow((double) this.y, 2.0D));
     }
 
     public double distance(int x, int y) {
-        return Math.sqrt(Math.pow((double)(this.x - x), 2.0D) + Math.pow((double)(this.y - y), 2.0D));
+        return Math.sqrt(Math.pow((double) (this.x - x), 2.0D) + Math.pow((double) (this.y - y), 2.0D));
     }
 
     public double distance(MyPoint another) {
-        return Math.sqrt(Math.pow((double)(this.x - another.getX()), 2.0D) + Math.pow((double)(this.y - another.getY()), 2.0D));
+        return Math.sqrt(Math.pow((double) (this.x - another.getX()), 2.0D) + Math.pow((double) (this.y - another.getY()), 2.0D));
     }
 }
