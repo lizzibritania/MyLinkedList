@@ -78,7 +78,7 @@ public class test {
         long estimatedTime1 = System.nanoTime() - startTime1;
         System.out.println(estimatedTime1);
 
-        System.out.println("Estimated time for add (Object element) method of myLinkedList");
+        System.out.println("Estimated time for add(Object element) method of myLinkedList");
         long startTime = System.nanoTime();
         for (int i = 0; i < 100000; i++) {
             linkedList.add(myPoint1);
