@@ -1,6 +1,4 @@
-/**
- * Created by Юля on 29.11.2016.
- */
+
 import java.util.*;
 public class TestUtil {
     public static void main(String[] args) {
